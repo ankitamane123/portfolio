@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankita Mane — Full-Stack .NET Developer</title>
+<meta name="description" content="Ankita Mane, Full-Stack .NET Developer in Mumbai — CRM platforms, recruitment systems, and AI-integrated education tools.">
+<!--<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>-->
+<script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F2F4F1;
+    --paper-dim:#E7EAE6;
+    --ink:#11161C;
+    --ink-soft:#4B535D;
+    --ink-faint:#8A93A0;
+    --blue:#1C3A63;
+    --blue-deep:#0F2645;
+    --blue-line: rgba(28,58,99,0.18);
+    --copper:#B5601F;
+    --copper-soft: rgba(181,96,31,0.12);
+    --card:#FDFDFC;
+    --radius: 2px;
+    --maxw: 1120px;
+    font-size: 16px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Space Grotesk', sans-serif;
+    margin:0;
+    color:var(--blue-deep);
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  a{ color:inherit; }
+
+  ::selection{ background: var(--copper-soft); color: var(--blue-deep); }
+
+  :focus-visible{
+    outline: 2px solid var(--copper);
+    outline-offset: 3px;
+  }
+
+  /* ---------- background grid (blueprint paper) ---------- */
+  body{
+    background-image:
+      linear-gradient(var(--blue-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--blue-line) 1px, transparent 1px);
+    background-size: 42px 42px;
+    background-position: -1px -1px;
+    background-attachment: fixed;
+  }
+
+  .wrap{
+    max-width: var(--maxw);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- fig label ---------- */
+  .fig{
+    display:flex;
+    align-items:center;
+    gap: 14px;
+    margin-bottom: 40px;
+  }
+  .fig .num{
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    color: var(--copper);
+    white-space: nowrap;
+  }
+  .fig .rule{
+    height:1px;
+    flex:1;
+    background: linear-gradient(90deg, var(--blue-line), transparent 92%);
+  }
+  .fig h2{
+    font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+    font-weight:600;
+  }
+
+  /* ---------- corner-tick card frame ---------- */
+  .tick-frame{
+    position:relative;
+    border: 1px solid var(--blue-line);
+    background: var(--card);
+  }
+  .tick-frame::before,
+  .tick-frame::after,
+  .tick-frame .tf-tl,
+  .tick-frame .tf-tr{
+    content:"";
+    position:absolute;
+    width:10px; height:10px;
+    border-color: var(--blue);
+    border-style: solid;
+    border-width:0;
+  }
+  .tick-frame::before{ top:-1px; left:-1px; border-top-width:2px; border-left-width:2px; }
+  .tick-frame::after{ bottom:-1px; right:-1px; border-bottom-width:2px; border-right-width:2px; }
+
+  /* ---------- nav ---------- */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 60;
+    background: rgba(242,244,241,0.86);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--blue-line);
+  }
+  nav{
+    max-width: var(--maxw);
+    margin:0 auto;
+    padding: 16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:500;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+    color: var(--blue-deep);
+    text-decoration:none;
+  }
+  .brand .mark{
+    width:26px; height:26px;
+    border:1.5px solid var(--blue);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.7rem;
+    position:relative;
+  }
+  .brand .mark::before, .brand .mark::after{
+    content:"";
+    position:absolute;
+    width:4px; height:4px;
+    background:var(--copper);
+    top:-2px; left:-2px;
+  }
+  .brand .mark::after{ top:auto; bottom:-2px; left:auto; right:-2px; }
+
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap: 30px;
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-size:0.86rem;
+    color: var(--ink-soft);
+    position:relative;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+  }
+  .nav-links a:hover{ color: var(--blue-deep); }
+  .nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0; height:1px;
+    background: var(--copper);
+    transition: width 0.25s ease;
+  }
+  .nav-links a:hover::after{ width:100%; }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing:0.03em;
+    padding: 11px 20px;
+    text-decoration:none;
+    border: 1px solid var(--blue-deep);
+    color: var(--blue-deep);
+    background: transparent;
+    cursor:pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{ transform: translateY(-1px); }
+  .btn-solid{
+    background: var(--blue-deep);
+    color: #F2F4F1;
+    border-color: var(--blue-deep);
+  }
+  .btn-solid:hover{ background: var(--blue); }
+  .btn-copper{
+    border-color: var(--copper);
+    color: var(--copper);
+  }
+  .btn-copper:hover{ background: var(--copper); color: #fff; }
+
+  .nav-cta{ display:flex; gap:10px; }
+  .hamburger{
+    display:none;
+    flex-direction:column;
+    gap:5px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    padding: 6px;
+  }
+  .hamburger span{
+    width:22px; height:2px;
+    background: var(--blue-deep);
+    display:block;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding: 90px 0 70px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 50px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:0.76rem;
+    letter-spacing:0.14em;
+    color: var(--copper);
+    margin-bottom: 22px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background: var(--copper);
+  }
+  .hero h1{
+    font-size: clamp(2.6rem, 5.6vw, 4.1rem);
+    line-height:1.03;
+    font-weight:700;
+  }
+  .hero .role{
+    margin-top:16px;
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+    color: var(--blue);
+    font-weight:500;
+    font-family:'Space Grotesk', sans-serif;
+  }
+  .hero p.lede{
+    margin-top: 22px;
+    max-width: 46ch;
+    color: var(--ink-soft);
+    font-size: 1.03rem;
+  }
+  .hero-ctas{
+    margin-top: 34px;
+    display:flex;
+    gap: 14px;
+    flex-wrap:wrap;
+  }
+  .hero-contact{
+    margin-top: 30px;
+    display:flex;
+    gap: 24px;
+    flex-wrap:wrap;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.82rem;
+    color: var(--ink-faint);
+  }
+  .hero-contact a{ text-decoration:none; color:var(--ink-soft); }
+  .hero-contact a:hover{ color: var(--copper); }
+
+  /* schema diagram */
+  .schema{
+    position:relative;
+    height: 420px;
+  }
+  .schema svg{ width:100%; height:100%; overflow:visible; }
+  .node-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 11px;
+    fill: var(--blue-deep);
+  }
+  .node-rect{
+    fill: var(--card);
+    stroke: var(--blue);
+    stroke-width:1.2;
+  }
+  .node-rect.center{
+    stroke: var(--copper);
+    stroke-width:1.6;
+  }
+  .edge{
+    fill:none;
+    stroke: var(--blue);
+    stroke-width:1;
+    stroke-dasharray: 3 4;
+    opacity:0.55;
+  }
+  .pulse{
+    fill: var(--copper);
+    opacity:0;
+  }
+
+  @keyframes travel{
+    0%{ opacity:0; }
+    8%{ opacity:1; }
+    92%{ opacity:1; }
+    100%{ opacity:0; }
+  }
+  .pulse{ animation: travel 3.2s ease-in-out infinite; }
+
+  /* ---------- section base ---------- */
+  section{ padding: 86px 0; }
+  section.alt{ background: var(--paper-dim); border-top:1px solid var(--blue-line); border-bottom:1px solid var(--blue-line); }
+
+  /* ---------- about ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 54px;
+    align-items:start;
+  }
+  .about-grid p{ color: var(--ink-soft); margin: 0 0 16px; }
+  .about-grid p:last-child{ margin-bottom:0; }
+  .about-stats{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--blue-line);
+    border:1px solid var(--blue-line);
+  }
+  .stat{
+    background: var(--card);
+    padding: 26px 22px;
+  }
+  .stat .n{
+    font-family:'Space Grotesk', sans-serif;
+    font-size: 2.1rem;
+    font-weight:700;
+    color: var(--blue-deep);
+  }
+  .stat .l{
+    margin-top:6px;
+    font-size:0.78rem;
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--ink-faint);
+    letter-spacing:0.03em;
+  }
+
+  /* ---------- skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--blue-line);
+    border: 1px solid var(--blue-line);
+  }
+  .skill-card{
+    background: var(--card);
+    padding: 28px 26px;
+  }
+  .skill-card h3{
+    font-size: 1rem;
+    font-weight:600;
+    margin-bottom: 16px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .skill-card h3::before{
+    content:"";
+    width:6px; height:6px;
+    background: var(--copper);
+  }
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.74rem;
+    padding: 6px 10px;
+    border:1px solid var(--blue-line);
+    color: var(--ink-soft);
+    background: var(--paper);
+  }
+
+  /* ---------- experience ---------- */
+  .exp-card{
+    padding: 34px;
+    display:grid;
+    grid-template-columns: 220px 1fr;
+    gap: 34px;
+  }
+  .exp-meta .company{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size: 1.15rem;
+    color: var(--blue-deep);
+  }
+  .exp-meta .loc{
+    margin-top:6px;
+    font-size:0.85rem;
+    color: var(--ink-faint);
+  }
+  .exp-meta .dates{
+    margin-top: 16px;
+    display:inline-block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.74rem;
+    color: var(--copper);
+    border:1px solid var(--copper);
+    padding: 4px 10px;
+  }
+  .exp-body .title{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size: 1.05rem;
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+  .exp-body ul{
+    margin:0; padding:0; list-style:none;
+    display:flex; flex-direction:column; gap:12px;
+  }
+  .exp-body li{
+    position:relative;
+    padding-left: 20px;
+    color: var(--ink-soft);
+    font-size:0.95rem;
+  }
+  .exp-body li::before{
+    content:"";
+    position:absolute;
+    left:0; top:9px;
+    width:8px; height:1.5px;
+    background: var(--copper);
+  }
+
+  /* ---------- projects ---------- */
+  .projects-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  .proj-card{
+    padding: 28px 24px;
+    display:flex;
+    flex-direction:column;
+    height:100%;
+  }
+  .proj-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom: 14px;
+  }
+  .proj-head h3{
+    font-size: 1.12rem;
+    font-weight:600;
+  }
+  .proj-url{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--ink-faint);
+    white-space:nowrap;
+    margin-top:4px;
+  }
+  .proj-card .desc{
+    color: var(--ink-soft);
+    font-size:0.92rem;
+    margin-bottom: 18px;
+  }
+  .proj-card ul{
+    margin:0 0 20px; padding:0; list-style:none;
+    display:flex; flex-direction:column; gap:10px;
+    flex:1;
+  }
+  .proj-card li{
+    position:relative;
+    padding-left:16px;
+    font-size:0.86rem;
+    color: var(--ink-soft);
+    line-height:1.55;
+  }
+  .proj-card li::before{
+    content:"·";
+    position:absolute;
+    left:0; top:-2px;
+    color: var(--copper);
+    font-size:1.2rem;
+    line-height:1;
+  }
+  .proj-card .tags{ margin-top:auto; }
+  .proj-card .tag{ font-size:0.68rem; padding:5px 8px; }
+
+  /* ---------- education ---------- */
+  .edu-grid{
+    display:grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 22px;
+  }
+  .edu-card{ padding: 30px; }
+  .edu-card .degree{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+  .edu-card .school{ color: var(--ink-soft); font-size:0.94rem; }
+  .edu-card .dates{
+    margin-top: 14px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.76rem;
+    color: var(--copper);
+  }
+  .train-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:16px; }
+  .train-list li{
+    position:relative;
+    padding-left: 22px;
+    font-size:0.9rem;
+    color: var(--ink-soft);
+  }
+  .train-list li::before{
+    content:"";
+    position:absolute;
+    left:0; top:6px;
+    width:9px; height:9px;
+    border: 1.5px solid var(--blue);
+  }
+
+  /* ---------- resume cta band ---------- */
+  .resume-band{
+    padding: 60px 0;
+  }
+  .resume-inner{
+    padding: 44px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 30px;
+    flex-wrap:wrap;
+    background: var(--blue-deep);
+    color: #EFF2F6;
+    position:relative;
+  }
+  .resume-inner::before, .resume-inner::after{
+    content:"";
+    position:absolute;
+    width:12px; height:12px;
+    border: 2px solid var(--copper);
+  }
+  .resume-inner::before{ top:-2px; left:-2px; border-right:none; border-bottom:none; }
+  .resume-inner::after{ bottom:-2px; right:-2px; border-left:none; border-top:none; }
+  .resume-inner h2{ color:#fff; font-size: 1.5rem; }
+  .resume-inner p{ color: #B9C2D0; margin: 8px 0 0; font-size:0.92rem; }
+  .resume-inner .btn-solid{ background:#F2F4F1; color:var(--blue-deep); border-color:#F2F4F1; }
+  .resume-inner .btn-solid:hover{ background:#fff; }
+
+  /* ---------- contact ---------- */
+  .contact-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items:center;
+  }
+  .contact-grid h2{
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+  }
+  .contact-list{ margin-top: 26px; display:flex; flex-direction:column; gap:16px; }
+  .contact-list a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.92rem;
+    color: var(--ink);
+    padding: 14px 16px;
+    border:1px solid var(--blue-line);
+    background: var(--card);
+    transition: border-color 0.2s ease, transform 0.15s ease;
+  }
+  .contact-list a:hover{ border-color: var(--copper); transform: translateX(3px); }
+  .contact-list .k{ color: var(--ink-faint); width: 68px; flex-shrink:0; font-size:0.72rem; }
+
+  footer{
+    padding: 30px 0 40px;
+    border-top: 1px solid var(--blue-line);
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap: 12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.in{ opacity:1; transform:none; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 920px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .schema{ height: 320px; order:-1; }
+    .about-grid{ grid-template-columns:1fr; }
+    .skills-grid{ grid-template-columns: 1fr 1fr; }
+    .projects-grid{ grid-template-columns: 1fr; }
+    .edu-grid{ grid-template-columns: 1fr; }
+    .exp-card{ grid-template-columns: 1fr; }
+    .contact-grid{ grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 720px){
+    .nav-links, .nav-cta .btn:not(.mobile-keep){ display:none; }
+    .hamburger{ display:flex; }
+    .skills-grid{ grid-template-columns: 1fr; }
+    nav{ padding: 14px 20px; }
+    .wrap{ padding: 0 20px; }
+    .hero{ padding: 60px 0 50px; }
+    .resume-inner{ flex-direction:column; align-items:flex-start; padding: 32px 24px; }
+  }
+
+  .mobile-menu{
+    display:none;
+    flex-direction:column;
+    gap: 2px;
+    padding: 10px 20px 20px;
+    border-top: 1px solid var(--blue-line);
+  }
+  .mobile-menu.open{ display:flex; }
+  .mobile-menu a{
+    text-decoration:none;
+    color: var(--ink-soft);
+    font-size:0.92rem;
+    padding: 12px 4px;
+    border-bottom: 1px solid var(--blue-line);
+  }
+  .mobile-menu .btn{ margin-top: 12px; justify-content:center; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="brand"><span class="mark">AM</span> Ankita&nbsp;Mane</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn" href="Ankita_Mane_Resume.pdf" download>Resume</a>
+      <a class="btn btn-solid" href="#contact">Get in touch</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+    <a class="btn btn-solid" href="Ankita_Mane_Resume.pdf" download>Download Resume</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow mono">FULL-STACK .NET DEVELOPER — MUMBAI</div>
+        <h1>Ankita Mane</h1>
+        <div class="role">I design and ship the systems behind CRM, recruitment, and education platforms.</div>
+        <p class="lede">3+ years building scalable web applications with ASP.NET MVC, ASP.NET Web API, and Microsoft SQL Server — from database schema to production feature, with a focus on clean architecture and dependable APIs.</p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn btn-solid">View My Work</a>
+          <a href="Ankita_Mane_Resume.pdf" download class="btn btn-copper">Download Resume</a>
+        </div>
+        <div class="hero-contact">
+          <a href="mailto:ankitamane117@gmail.com">ankitamane117@gmail.com</a>
+          <a href="tel:+919326038236">+91 93260 38236</a>
+        </div>
+      </div>
+
+      <div class="schema" aria-hidden="true">
+        <svg viewBox="0 0 460 420">
+          <!-- edges from center to nodes -->
+          <path class="edge" d="M230,210 C170,180 130,140 90,95"></path>
+          <path class="edge" d="M230,210 C230,160 230,110 230,55"></path>
+          <path class="edge" d="M230,210 C290,170 340,130 385,90"></path>
+          <path class="edge" d="M230,210 C170,240 110,255 60,240"></path>
+          <path class="edge" d="M230,210 C290,250 350,265 400,245"></path>
+          <path class="edge" d="M230,210 C210,270 195,320 175,365"></path>
+          <path class="edge" d="M230,210 C260,270 285,320 315,360"></path>
+
+          <!-- moving pulses -->
+          <circle class="pulse" r="3" style="animation-delay:0s"><animateMotion dur="3.2s" repeatCount="indefinite" path="M230,210 C170,180 130,140 90,95"/></circle>
+          <circle class="pulse" r="3" style="animation-delay:0.4s"><animateMotion dur="3.2s" repeatCount="indefinite" path="M230,210 C230,160 230,110 230,55"/></circle>
+          <circle class="pulse" r="3" style="animation-delay:0.8s"><animateMotion dur="3.2s" repeatCount="indefinite" path="M230,210 C290,170 340,130 385,90"/></circle>
+          <circle class="pulse" r="3" style="animation-delay:1.2s"><animateMotion dur="3.2s" repeatCount="indefinite" path="M230,210 C170,240 110,255 60,240"/></circle>
+          <circle class="pulse" r="3" style="animation-delay:1.6s"><animateMotion dur="3.2s" repeatCount="indefinite" path="M230,210 C290,250 350,265 400,245"/></circle>
+          <circle class="pulse" r="3" style="animation-delay:2.0s"><animateMotion dur="3.2s" repeatCount="indefinite" path="M230,210 C210,270 195,320 175,365"/></circle>
+          <circle class="pulse" r="3" style="animation-delay:2.4s"><animateMotion dur="3.2s" repeatCount="indefinite" path="M230,210 C260,270 285,320 315,360"/></circle>
+
+          <!-- outer nodes -->
+          <g>
+            <rect class="node-rect" x="42" y="72" width="96" height="34" rx="1"></rect>
+            <text class="node-label" x="90" y="93" text-anchor="middle">C#</text>
+          </g>
+          <g>
+            <rect class="node-rect" x="170" y="30" width="120" height="34" rx="1"></rect>
+            <text class="node-label" x="230" y="51" text-anchor="middle">ASP.NET MVC</text>
+          </g>
+          <g>
+            <rect class="node-rect" x="330" y="66" width="120" height="34" rx="1"></rect>
+            <text class="node-label" x="390" y="87" text-anchor="middle">Web API</text>
+          </g>
+          <g>
+            <rect class="node-rect" x="8" y="218" width="110" height="34" rx="1"></rect>
+            <text class="node-label" x="63" y="239" text-anchor="middle">SQL Server</text>
+          </g>
+          <g>
+            <rect class="node-rect" x="340" y="222" width="122" height="34" rx="1"></rect>
+            <text class="node-label" x="401" y="243" text-anchor="middle">Entity Framework</text>
+          </g>
+          <g>
+            <rect class="node-rect" x="118" y="360" width="96" height="34" rx="1"></rect>
+            <text class="node-label" x="166" y="381" text-anchor="middle">LINQ</text>
+          </g>
+          <g>
+            <rect class="node-rect" x="262" y="356" width="106" height="34" rx="1"></rect>
+            <text class="node-label" x="315" y="377" text-anchor="middle">REST APIs</text>
+          </g>
+
+          <!-- center node -->
+          <rect class="node-rect center" x="164" y="190" width="132" height="40" rx="1"></rect>
+          <text class="node-label" x="230" y="215" text-anchor="middle" style="font-weight:600;">A. MANE</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="fig reveal"><span class="num mono">FIG. 01</span><h2>About</h2><span class="rule"></span></div>
+      <div class="about-grid reveal">
+        <div>
+          <p>I'm a .NET developer based in Mumbai with three-plus years of experience designing, building, and maintaining scalable web applications. My work centers on ASP.NET MVC and ASP.NET Web API, backed by Microsoft SQL Server, Entity Framework, and LINQ — with a steady focus on RESTful API design, N-Tier architecture, and secure, maintainable systems.</p>
+          <p>At Silicon Interfaces, I've taken projects from database schema to shipped feature: a customer relationship platform, a recruitment system, and an AI-integrated education platform, each handled end-to-end — schema design, API development, performance tuning, and the everyday work of production support.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat"><div class="n">3+</div><div class="l">YEARS EXPERIENCE</div></div>
+          <div class="stat"><div class="n">3</div><div class="l">PLATFORMS SHIPPED</div></div>
+          <div class="stat"><div class="n">N-Tier</div><div class="l">ARCHITECTURE FOCUS</div></div>
+          <div class="stat"><div class="n">REST</div><div class="l">API DESIGN</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="alt">
+    <div class="wrap">
+      <div class="fig reveal"><span class="num mono">FIG. 02</span><h2>Skills</h2><span class="rule"></span></div>
+      <div class="skills-grid reveal">
+        <div class="skill-card">
+          <h3>Languages &amp; Frameworks</h3>
+          <div class="tags">
+            <span class="tag">C#</span><span class="tag">ASP.NET MVC</span><span class="tag">ASP.NET Web API</span><span class="tag">.NET Framework 4.7.2</span><span class="tag">Entity Framework</span><span class="tag">LINQ</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Architecture &amp; Concepts</h3>
+          <div class="tags">
+            <span class="tag">N-Tier Architecture</span><span class="tag">OOP</span><span class="tag">SOLID Principles</span><span class="tag">Dependency Injection</span><span class="tag">Middleware</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Database</h3>
+          <div class="tags">
+            <span class="tag">Microsoft SQL Server</span><span class="tag">MySQL</span><span class="tag">Stored Procedures</span><span class="tag">Indexing</span><span class="tag">Query Optimization</span><span class="tag">Pagination</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Integrations &amp; Tools</h3>
+          <div class="tags">
+            <span class="tag">iTextSharp</span><span class="tag">Twilio API</span><span class="tag">SendGrid</span><span class="tag">QRCoder</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <h3>Web Technologies</h3>
+          <div class="tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">jQuery</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="fig reveal"><span class="num mono">FIG. 03</span><h2>Experience</h2><span class="rule"></span></div>
+      <div class="exp-card tick-frame reveal">
+        <div class="exp-meta">
+          <div class="company">Silicon Interfaces</div>
+          <div class="loc">Mumbai, India</div>
+          <div class="dates mono">APR 2023 — PRESENT</div>
+        </div>
+        <div class="exp-body">
+          <div class="title">Associate Software Engineer</div>
+          <ul>
+            <li>Designed and developed CRM modules using ASP.NET MVC and .NET Framework 4.7.2, and built RESTful APIs for internal integrations.</li>
+            <li>Integrated Microsoft SQL Server with optimized queries and indexing, and implemented role-based authentication and authorization.</li>
+            <li>Improved system performance by optimizing LINQ queries and reducing database round trips.</li>
+            <li>Implemented automated email notifications and scheduled task reminders.</li>
+            <li>Handled bug fixing, production issue support, and performance troubleshooting, following layered architecture for maintainability and scalability.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="alt">
+    <div class="wrap">
+      <div class="fig reveal"><span class="num mono">FIG. 04</span><h2>Projects</h2><span class="rule"></span></div>
+      <div class="projects-grid reveal">
+
+        <div class="proj-card tick-frame">
+          <div class="proj-head">
+            <h3>CRM Platform</h3>
+          </div>
+          <div class="proj-url mono">crm.esiliconworld.com</div>
+          <p class="desc" style="margin-top:14px;">End-to-end customer relationship management platform for customer records, communications, and payments.</p>
+          <ul>
+            <li>Bulk CSV import and modules for customer record creation, viewing, updating, and management.</li>
+            <li>Designed the database schema and stored procedures; optimized queries and pagination to cut retrieval time.</li>
+            <li>Bulk email, greetings, record printing, and voucher generation.</li>
+            <li>Integrated PayPal and PayU gateways by customer country/payment option.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">ASP.NET MVC</span><span class="tag">SQL Server</span><span class="tag">PayPal / PayU</span>
+          </div>
+        </div>
+
+        <div class="proj-card tick-frame">
+          <div class="proj-head">
+            <h3>HRO Recruitment Platform</h3>
+          </div>
+          <div class="proj-url mono">&nbsp;</div>
+          <p class="desc" style="margin-top:14px;">Recruitment platform managing the candidate process from resume screening through interview scheduling.</p>
+          <ul>
+            <li>Resume/CV scanning to automatically extract and process candidate information.</li>
+            <li>Integrated Webex for scheduling and conducting candidate interviews.</li>
+            <li>Streamlined the recruitment workflow end-to-end for hiring teams.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">ASP.NET MVC</span><span class="tag">Webex API</span><span class="tag">SQL Server</span>
+          </div>
+        </div>
+
+        <div class="proj-card tick-frame">
+          <div class="proj-head">
+            <h3>B2CIE Education Platform</h3>
+          </div>
+          <div class="proj-url mono">b2cie.esiliconworld.com</div>
+          <p class="desc" style="margin-top:14px;">AI-driven education and content platform combining synopsis generation, messaging, and assessment tools.</p>
+          <ul>
+            <li>AI-driven content-to-synopsis conversion using OpenRouter AI models, with email-verified access.</li>
+            <li>WhatsApp API integration and an AI-based query handling system for student questions.</li>
+            <li>Online tests, class tests, and dynamic question-paper generation from teacher-defined requirements.</li>
+            <li>Class scheduling, assignment distribution with submission tracking, and subscription payments.</li>
+          </ul>
+          <div class="tags">
+            <span class="tag">OpenRouter AI</span><span class="tag">WhatsApp API</span><span class="tag">SendGrid</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="wrap">
+      <div class="fig reveal"><span class="num mono">FIG. 05</span><h2>Education &amp; Training</h2><span class="rule"></span></div>
+      <div class="edu-grid reveal">
+        <div class="edu-card tick-frame">
+          <div class="degree">BE, Electronics and Telecommunication</div>
+          <div class="school">K.J. Somaiya Institute of Engineering and I.T, Mumbai</div>
+          <div class="dates mono">JUN 2016 — JUL 2019</div>
+        </div>
+        <div class="edu-card tick-frame">
+          <ul class="train-list">
+            <li>Completed Full-Stack Development training at JSpiders (2022–2023).</li>
+            <li>Participated in a National Level Project Competition at K.J. Somaiya Institute of Engineering and IT.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME BAND -->
+  <section class="resume-band">
+    <div class="wrap">
+      <div class="resume-inner reveal">
+        <div>
+          <h2>Want the full picture?</h2>
+          <p>Grab the one-page resume — same details, ready to print or forward.</p>
+        </div>
+        <a href="Ankita_Mane_Resume.pdf" download class="btn btn-solid">Download Resume (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="alt">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <div class="eyebrow mono">FIG. 06 — CONTACT</div>
+        <h2>Let's work together.</h2>
+        <p style="color:var(--ink-soft); margin-top:14px; max-width:42ch;">Open to full-stack .NET roles and freelance builds. The fastest way to reach me is email or a call.</p>
+      </div>
+      <div class="contact-list reveal">
+        <a href="mailto:ankitamane117@gmail.com"><span class="k">EMAIL</span> ankitamane117@gmail.com</a>
+        <a href="tel:+919326038236"><span class="k">PHONE</span> +91 93260 38236</a>
+        <a href="Ankita_Mane_Resume.pdf" download><span class="k">RESUME</span> Download PDF</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© <span id="year"></span> ANKITA MANE — FULL-STACK .NET DEVELOPER, MUMBAI</span>
+    <span>BUILT WITH ASP.NET · SQL SERVER · CARE</span>
+  </div>
+</footer>
+
+<script>
+$(document).ready(function () {
+    $('#year').text(new Date().getFullYear());
+});
+
+  // mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      hamburger.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
